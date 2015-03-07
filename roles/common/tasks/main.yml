@@ -1,0 +1,9 @@
+---
+- name: Install dependencies
+  yum:
+    name="{{ item }}"
+    state=latest
+  with_items:
+    - libselinux-python
+    - vim
+    - nc
