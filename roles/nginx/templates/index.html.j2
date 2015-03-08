@@ -7,11 +7,14 @@
     body {
       text-align: center;
     }
+    img#thumbs-up {
+      height: 360px;
+    }
   </style>
 </head>
 <body>
   <h1>Nginx server is up and running</h1>
   <h2>Good job!</h2>
-  <img src="/images/{{ thumbs_up_person }}-thumbs-up.gif" alt="Thumbs Up">
+  <img id="thumbs-up" src="/images/{{ thumbs_up_person }}-thumbs-up.gif" alt="Thumbs Up">
 </body>
 </html>
