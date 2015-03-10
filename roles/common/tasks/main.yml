@@ -7,3 +7,5 @@
     - libselinux-python
     - vim
     - nc
+  tags:
+    - essential
