@@ -1,0 +1,39 @@
+---
+- name: Install apache httpd
+  yum:
+    name="httpd-{{ httpd_version }}"
+    state=present
+
+- name: Remove default welcome page config
+  file:
+    path=/etc/httpd/conf.d/welcome.conf
+    state=absent
+  notify:
+    - Reload httpd
+
+- name: Copy httpd config
+  template:
+    src=httpd.conf.j2
+    dest=/etc/httpd/conf/httpd.conf
+    owner=root
+    group=root
+    mode=0644
+    backup=yes
+  notify:
+    Reload httpd
+
+- name: Copy home page source file
+  template:
+    src=index.html.j2
+    dest=/var/www/html/index.html
+
+- name: Copy home page images
+  copy:
+    src=images
+    dest=/var/www/html/
+
+- name: Start httpd server
+  service:
+    name=httpd
+    state=started
+

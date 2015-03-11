@@ -2,5 +2,5 @@
 - hosts: demo
   roles:
     - common
-    - nginx
+    - apache
   sudo: yes

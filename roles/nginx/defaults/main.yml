@@ -1,7 +1,0 @@
----
-nginx_version: 1.7.10
-nginx_user: nobody
-nginx_group: nobody
-nginx_root_path: /var/www/html
-nginx_port: 80
-thumbs_up_person: chuck-norris
