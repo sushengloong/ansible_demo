@@ -1,0 +1,36 @@
+---
+- name: Create sftp user
+  user:
+    name=minisya
+
+- name: Add public key into sftp user's authorized key
+  authorized_key:
+    user=minisya
+    key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+- name: Install vsftpd
+  yum:
+    name=vsftpd
+    state=present
+
+- name: Change some configurations
+  lineinfile:
+    dest=/etc/vsftpd/vsftpd.conf
+    regexp=^anonymous_enable=YES$
+    line=anonymous_enable=NO
+  notify:
+    - Reload vsftpd
+
+- name: Put dummy file into ftp folder
+  file:
+    path=~minisya/MOM-1APR.csv.pgp
+    owner=minisya
+    group=minisya
+    mode=0644
+    state=touch
+
+- name: Start vsftpd
+  service:
+    name=vsftpd
+    state=started
+    enabled=yes

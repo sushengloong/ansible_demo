@@ -3,4 +3,5 @@
   roles:
     - common
     - apache
+    - sftp_server
   sudo: yes
